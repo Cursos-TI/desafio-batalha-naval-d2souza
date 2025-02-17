@@ -1,12 +1,14 @@
 #include <stdio.h>
 
-// Desafio Batalha Naval - MateCheck
-// Este código inicial serve como base para o desenvolvimento do sistema de Batalha Naval.
-// Siga os comentários para implementar cada parte do desafio.
+#define LINHAS 10
+#define COLUNAS 10
+
+#define AGUA 0
+#define NAVIO 3
 
 int main() {
 
-    int tabuleiro[4][4] = {
+    /*int tabuleiro[4][4] = {
         {0, 1, 2, 3},
         {4, 5, 6, 7},
         {8, 9 ,10 ,11},
@@ -15,11 +17,43 @@ int main() {
 
     printf("Navio na posição %d, %d e %d\n", tabuleiro[1][0], tabuleiro[2][0], tabuleiro[3][0]);
     printf("Navio na posição %d, %d e %d\n", tabuleiro[0][1], tabuleiro[0][2], tabuleiro[0][3]);
+    */
 
-    // Nível Aventureiro - Expansão do Tabuleiro e Posicionamento Diagonal
-    // Sugestão: Expanda o tabuleiro para uma matriz 10x10.
-    // Sugestão: Posicione quatro navios no tabuleiro, incluindo dois na diagonal.
-    // Sugestão: Exiba o tabuleiro completo no console, mostrando 0 para posições vazias e 3 para posições ocupadas.
+    int tabuleiro[LINHAS][COLUNAS];
+
+    for (int i = 0; i < LINHAS; i++)
+    {
+        for (int j = 0; j < COLUNAS; j++)
+        {
+            tabuleiro[i][j] = AGUA;
+        }
+        printf("\n");
+    }
+    
+    tabuleiro[6][3] = NAVIO;
+    tabuleiro[6][4] = NAVIO;
+    tabuleiro[6][5] = NAVIO;
+
+    tabuleiro[3][6] = NAVIO;
+    tabuleiro[3][7] = NAVIO;
+    tabuleiro[3][8] = NAVIO;
+
+    tabuleiro[0][9] = NAVIO;
+    tabuleiro[1][8] = NAVIO;
+
+    tabuleiro[6][1] = NAVIO;
+    tabuleiro[7][2] = NAVIO;
+    tabuleiro[8][3] = NAVIO;
+    tabuleiro[9][4] = NAVIO;
+
+    for (int i = 0; i < LINHAS; i++)
+    {
+        for (int j = 0; j < COLUNAS; j++)
+        {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
 
     // Nível Mestre - Habilidades Especiais com Matrizes
     // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
