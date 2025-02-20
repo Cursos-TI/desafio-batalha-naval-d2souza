@@ -1,29 +1,18 @@
 #include <stdio.h>
 
-#define LINHAS 10
-#define COLUNAS 10
+#define LINHAS 10 // linhas que a matriz terá
+#define COLUNAS 10 //colunas que a matriz terá
 
-#define AGUA 0
+#define AGUA 0 
 #define NAVIO 3
 #define HABILIDADE 1
 
 int main() {
 
-    /*int tabuleiro[4][4] = {
-        {0, 1, 2, 3},
-        {4, 5, 6, 7},
-        {8, 9 ,10 ,11},
-        {12, 13, 14, 15}
-    };
+    int tabuleiro[LINHAS][COLUNAS]; // matriz recebendo os valores setados nas constantes
 
-    printf("Navio na posição %d, %d e %d\n", tabuleiro[1][0], tabuleiro[2][0], tabuleiro[3][0]);
-    printf("Navio na posição %d, %d e %d\n", tabuleiro[0][1], tabuleiro[0][2], tabuleiro[0][3]);
-    */
 
-    int tabuleiro[LINHAS][COLUNAS];
-    int linhaInicial = 4, colunaInicial = 4;
-
-    for (int i = 0; i < LINHAS; i++)
+    for (int i = 0; i < LINHAS; i++) //Aqui estou definindo a matriz em si
     {
         for (int j = 0; j < COLUNAS; j++)
         {
@@ -32,6 +21,8 @@ int main() {
         printf("\n");
     }
     
+    //Declaração dos navios
+
     tabuleiro[6][3] = NAVIO;
     tabuleiro[6][4] = NAVIO;
     tabuleiro[6][5] = NAVIO;
@@ -48,40 +39,42 @@ int main() {
     tabuleiro[8][3] = NAVIO;
     tabuleiro[9][4] = NAVIO;
 
+    int linhaInicial = 4, colunaInicial = 4; //Definindo o local onde a piramide irá começar
+
     for (int i = 0; i < 4; i++)
     {
-        int left = colunaInicial + 2 - i;
-        int right = colunaInicial + 2 + i;
+        int esquerda = colunaInicial + 2 - i; // posição esquerda onde será desenhado o cone
+        int direita = colunaInicial + 2 + i;// posição direita onde será desenhado o cone
 
-        for (int j = left; j < right; j++)
+        for (int j = esquerda; j < direita ; j++) //alterando os valores para 1
         {
             tabuleiro[linhaInicial + i][j] = HABILIDADE;
         }
         
     }
 
-    int linhaDoCentroDaCruz = 1;
-    int colunaDoCentroDaCruz = 1;
+    int linhaDoCentroDaCruz = 1; //posição da cruz linha na matriz
+    int colunaDoCentroDaCruz = 1; //posição da cruz coluna na matriz
 
-    for (int i = 0; i < 4; i++)
+    for (int i = 0; i < 4; i++) //iterando por 4 posições
     {
         for (int j = 0; j < 4; j++)
         {
-            if(i == 1 || j == 1) 
+            if(i == 1 || j == 1) //verificando as posições de i e j e preenchendo até que forme a cruz
             {
                 tabuleiro[linhaDoCentroDaCruz - 1 + i][colunaDoCentroDaCruz - 1 + j] = HABILIDADE;
             }
         }
     }
     
-    int linhaDoOctaedro = 1;
+    int linhaDoOctaedro = 1; //posição na matriz
     int colunaDoOctaedro = 8;
 
-    for (int i = 0; i < 3; i++)
+    for (int i = 0; i < 3; i++) 
     {
         for (int j = 0; j < 3; j++)
         {
-            if(i == 1 || j == 1) 
+            if(i == 1 || j == 1) //desenhando o octaedro após verificar as posições i e j
             {
                 tabuleiro[colunaDoOctaedro - 1 + i][linhaDoOctaedro - 1 + j] = HABILIDADE;
             }
@@ -97,27 +90,6 @@ int main() {
         }
         printf("\n");
     }
-
-    // Nível Mestre - Habilidades Especiais com Matrizes
-    // Sugestão: Crie matrizes para representar habilidades especiais como cone, cruz, e octaedro.
-    // Sugestão: Utilize estruturas de repetição aninhadas para preencher as áreas afetadas por essas habilidades no tabuleiro.
-    // Sugestão: Exiba o tabuleiro com as áreas afetadas, utilizando 0 para áreas não afetadas e 1 para áreas atingidas.
-
-    // Exemplos de exibição das habilidades:
-    // Exemplo para habilidade em cone:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 1 1 1 1 1
-    
-    // Exemplo para habilidade em octaedro:
-    // 0 0 1 0 0
-    // 0 1 1 1 0
-    // 0 0 1 0 0
-
-    // Exemplo para habilidade em cruz:
-    // 0 0 1 0 0
-    // 1 1 1 1 1
-    // 0 0 1 0 0
 
     return 0;
 }
