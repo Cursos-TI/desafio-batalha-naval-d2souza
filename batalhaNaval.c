@@ -5,6 +5,7 @@
 
 #define AGUA 0
 #define NAVIO 3
+#define HABILIDADE 1
 
 int main() {
 
@@ -20,6 +21,7 @@ int main() {
     */
 
     int tabuleiro[LINHAS][COLUNAS];
+    int linhaInicial = 4, colunaInicial = 4;
 
     for (int i = 0; i < LINHAS; i++)
     {
@@ -45,6 +47,47 @@ int main() {
     tabuleiro[7][2] = NAVIO;
     tabuleiro[8][3] = NAVIO;
     tabuleiro[9][4] = NAVIO;
+
+    for (int i = 0; i < 4; i++)
+    {
+        int left = colunaInicial + 2 - i;
+        int right = colunaInicial + 2 + i;
+
+        for (int j = left; j < right; j++)
+        {
+            tabuleiro[linhaInicial + i][j] = HABILIDADE;
+        }
+        
+    }
+
+    int linhaDoCentroDaCruz = 1;
+    int colunaDoCentroDaCruz = 1;
+
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            if(i == 1 || j == 1) 
+            {
+                tabuleiro[linhaDoCentroDaCruz - 1 + i][colunaDoCentroDaCruz - 1 + j] = HABILIDADE;
+            }
+        }
+    }
+    
+    int linhaDoOctaedro = 1;
+    int colunaDoOctaedro = 8;
+
+    for (int i = 0; i < 3; i++)
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            if(i == 1 || j == 1) 
+            {
+                tabuleiro[colunaDoOctaedro - 1 + i][linhaDoOctaedro - 1 + j] = HABILIDADE;
+            }
+        }
+    }
+
 
     for (int i = 0; i < LINHAS; i++)
     {
